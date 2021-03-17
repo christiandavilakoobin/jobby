@@ -18,7 +18,6 @@
     "php": ">=5.6",
     "dragonmantank/cron-expression": "^3.0",
     "opis/closure": "^3.5",
-    "swiftmailer/swiftmailer": "^5.4|^6.0",
     "symfony/process": "^2.7|^3.0|^4.0|^5.0"
   },
   "require-dev": {
@@ -35,6 +34,9 @@
     "psr-4": {
       "Jobby\\Tests\\": "tests"
     }
+  },
+  "suggest": {
+    "swiftmailer/swiftmailer": "for mailing capabilities"
   },
   "config": {
     "sort-packages": true
