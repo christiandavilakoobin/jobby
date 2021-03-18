@@ -160,11 +160,9 @@ class Jobby
                 continue;
             }
 
-            if (isset($config['inline']))
-            {
+            if (isset($config['inline'])) {
                 $config['inline']();
-            }
-            elseif ($isUnix) {
+            } elseif ($isUnix) {
                 $this->runUnix($job, $config);
             } else {
                 $this->runWindows($job, $config);
