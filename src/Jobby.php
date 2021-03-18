@@ -120,8 +120,8 @@ class Jobby
             throw new Exception("'schedule' is required for '$job' job");
         }
 
-        if (!(isset($config['command']) xor isset($config['closure']))) {
-            throw new Exception("Either 'command' or 'closure' is required for '$job' job");
+        if (!(isset($config['command']) xor isset($config['closure']) xor isset($config['inline']))) {
+            throw new Exception("Either 'command' or 'closure' or 'inline' is required for '$job' job");
         }
 
         if (isset($config['command']) &&
@@ -159,7 +159,12 @@ class Jobby
             if (!$scheduleChecker->isDue($config['schedule'])) {
                 continue;
             }
-            if ($isUnix) {
+
+            if (isset($config['inline']))
+            {
+                $config['inline']();
+            }
+            elseif ($isUnix) {
                 $this->runUnix($job, $config);
             } else {
                 $this->runWindows($job, $config);
