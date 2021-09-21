@@ -156,7 +156,7 @@ class Jobby
         $scheduleChecker = new ScheduleChecker(new DateTimeImmutable("now"));
         foreach ($this->jobs as $jobConfig) {
             list($job, $config) = $jobConfig;
-            if (!$scheduleChecker->isDue($config['schedule'])) {
+            if (!$scheduleChecker->isDue($config['schedule'], $config['timezone'] ?? null)) {
                 continue;
             }
 

@@ -19,9 +19,10 @@ class ScheduleChecker
 
     /**
      * @param string|callable $schedule
+     * @param ?string $timezone
      * @return bool
      */
-    public function isDue($schedule)
+    public function isDue($schedule, $timezone = null)
     {
         if (is_callable($schedule)) {
             return call_user_func($schedule, $this->now);
@@ -32,6 +33,6 @@ class ScheduleChecker
             return $dateTime->format('Y-m-d H:i') == $this->now->format('Y-m-d H:i');
         }
 
-        return CronExpression::factory((string)$schedule)->isDue($this->now);
+        return CronExpression::factory((string)$schedule)->isDue($this->now, $timezone);
     }
 }
